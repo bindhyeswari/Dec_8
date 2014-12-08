@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        function createClosure() {
+            var x = 10;
+            return function () {
+                return x++;
+            }
+        }
+
+        var fn = createClosure();
+        console.log(fn.toString());
+        console.log(fn()); /// 10
+        console.log(fn()); // 11
+
+        var fn2 = createClosure();
+        console.log(fn2.toString());
+        console.log(fn2()); // 12
+        console.log(fn2()); // 13
+
+        // Private variable pattern
+
+        // todo: Create a constructor that creates a private variable that can be accessed by the
+        //       methods of the object, but the variable cannot be accessed as a property
+
+        // create a private variable id, that cannot be accessed or modified from outside the functions
+
+        function Person(name, id) {
+            var _id = id;
+            this.name = name;
+            this.sayHello = function () {
+                console.log('Hello from ' + this.name + ' with id: ' + _id);
+            };
+            this.sayHello2 = function () {
+                console.log('Hello from ' + this.name + ' with id: ' + ++_id);
+            };
+        }
+
+
+        var person = new Person('Da Feng', 102);
+        person.sayHello(); // Hello from <name> with 102
+        person.sayHello2(); // Hello from <name> with 102
+        person.sayHello(); // Hello from <name> with <id>
+
+        person.id = 200;
+        person.name = 'modified';
+        person.sayHello(); // Hello from <name> with <id>
+
+        console.log(Person.prototype);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script>
+        $(function () {
+            $('input[name="age"]').blur(function (event) {
+                console.log(event);
+                console.log(/^\d+$/.test(this.value));
+            });
+           /* $(':input').on('click', function () {
+                console.log('clicked');
+            });*/
+
+
+            $('button').click(function () {
+
+            });
+
+            function eventRegistration(selector, eventType, handler) {
+                // register the eveent on the selector
+                $(selector).on(eventType, handler); // .on method
+                // if it is possible (assuming that the eventType exists as a method)
+                // to do it by directly calling the method .click, .keydown
+
+
+                // $(selector)[eventType](handler);
+
+            }
+
+            eventRegistration(':input', 'click', function () {
+                console.log('clicked');
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="text" name="username"/>
+<input type="text" name="age" placeholder="age"/>
+<input type="text" name="age" placeholder="age"/>
+</body>
+</html>

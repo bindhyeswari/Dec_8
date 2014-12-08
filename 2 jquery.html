@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script>
+        $(function () {
+            $('div', 'body').html('Hello World from jQuery!'); // CSS Selector
+
+
+            $('div')[0].innerHTML = 'data'; // convert from jQuery to DOM
+
+            var div = document.getElementById('idx');
+            $(div).html('This div has an id of idx'); // DOM to jQuery
+
+
+
+        });
+    </script>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div id="idx"></div>
+
+</body>
+</html>

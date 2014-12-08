@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script>
+
+        var start = new Date();
+        // window load
+        // document DOMContentLoaded
+        // document readystatechange - loading, interactive & complete
+
+        var eventListeners = {
+            window: ['load'],
+            document: ['DOMContentLoaded', 'readystatechange']
+        };
+
+        for (var prop in eventListeners) { // prop = 'window'
+            var arr = eventListeners[prop]; // eventListeners['window'] --> ['load']
+            for (var i = 0, len = arr.length; i < len; i++) {
+                console.log(arr[i]); // i = 0, arr[0] --> 'load'
+                window[prop].addEventListener(arr[i], (function (eventType) { // window['window'] --> window.window --> window.addEventLisetner('load')
+                    console.log(eventType);
+                    // this --> context
+                    console.log(eventType + ': ' + ((new Date()) - start) + 'ms');
+                }).bind(window[prop], arr[i]));
+            }
+        }
+
+        $(function () {
+            // timeline for the jQuery's document parse event
+            console.log('$(function) fired at: ' + ((new Date()) - start) + 'ms');
+        });
+
+        /*window.addEventListener('load', function () {
+            console.log('load event happens at: ' + (new Date() - start) + 'ms');
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOMContentLoaded event happens at: ' + (new Date() - start) + 'ms');
+        });
+        document.addEventListener('readystatechange', function () {
+            console.log( document.readyState + ' event happens at: ' + (new Date() - start) + 'ms');
+        });*/
+
+    </script>
+
+
+</head>
+<body>
+
+</body>
+</html>

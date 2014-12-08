@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script>
+        $(function () {
+
+            var jsonObject = {};
+
+            console.log($(':input'));
+
+            $('form').submit(function (event) {
+
+                // stop the default action = submitting the form
+                event.preventDefault();
+
+                // print the JSON object
+
+                var $input = $(':input').each(function () {
+                    console.log(this);
+                    var $inp = $(this);
+                    var prop = $inp.attr('name');
+                    var val = $inp.val();
+                    jsonObject[prop] = val;
+
+                    // jsonObject[$(this).attr('name')] = $(this).val();
+                });
+
+                console.log(jsonObject);
+            });
+
+            console.log($('li:contains("Selected")'));
+            $('li:empty').html('Was initially empty');
+
+            console.log($('div').attr('data-name'));
+        });
+    </script>
+</head>
+<body>
+<div data-name="Da Feng"></div>
+
+<form method="post" action="http://localhost:63342/jQuery/3%20forms.html">
+    <input type="text" name="username"/>
+    <input type="text" name="email"/>
+    <input type="text" name="tel"/>
+    <input type="password" name="password"/>
+    <input type="submit"/>
+</form>
+<button>Click here to print form data as JSON to console</button>
+<ul>
+    <li>Selected</li>
+    <li>Not Selected</li>
+    <li>Does not have keyword</li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>
